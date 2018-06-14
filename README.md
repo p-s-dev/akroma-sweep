@@ -49,9 +49,3 @@ Waiting `C` blocks at start allows time to load transacation mempool, which prev
   - More chain attack checks:
     - done: check parent block hash match, looking for high re-org height.
     - check same miner mined unreasonably large number of sequential blocks (easily defeated by attacking miner using many addresses)
-  
-  
-  
-    
-  //TODO - measure node health.  node has recent history of receiving sequential blocks with no gaps or re-orgs.
-
