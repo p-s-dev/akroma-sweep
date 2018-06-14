@@ -1,0 +1,50 @@
+group 'com.psdev.aka'
+version '0.0.2'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'aka-sweep'
+    version =  '0.0.2'
+}
+
+repositories {
+//    mavenLocal()
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    web3jVersion = '3.4.0'
+    logbackVersion = '1.2.3'
+    junitVersion = '4.12'
+}
+
+dependencies {
+    compile "org.web3j:core:$web3jVersion",
+            "ch.qos.logback:logback-core:$logbackVersion",
+            "ch.qos.logback:logback-classic:$logbackVersion"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.0.2.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '5.0.6.RELEASE'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.5'
+    compile group: 'org.projectlombok', name:'lombok', version:'1.16.20'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile group: 'joda-time', name: 'joda-time', version: '2.9.9'
+
+    testCompile("junit:junit")
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.2.RELEASE'
+
+}

@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  akroma-rpc-node:
+    volumes:
+      - /tmp/data/aka-dev/chaindata:/root/.akroma/geth/chaindata
+    ports:
+      - "8545:8545"
+    image: psdev/go-akroma
+    entrypoint: "/usr/local/bin/geth"
+    command: " --rpc --rpcaddr=0.0.0.0 --rpcport=8545 "
+  akroma-sweep:
+    volumes:
+      - /mnt/secure/aka-mn-keys:/keys
+    build:
+      dockerfile: Dockerfile.copyjar
+      context: ./
