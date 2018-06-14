@@ -36,7 +36,7 @@ chain validation, watching for re-orgs:
    
 run it:
  - in IDE from Application.java
- - `docker run -d -v /mnt/secure/aka-mn-keys:/secure psdev/aka-sweep`
+ - `docker run -d -v /mnt/secure/aka-mn-keys:/secure <imageid>`
  - docker-compose build akroma-sweep
  
  
