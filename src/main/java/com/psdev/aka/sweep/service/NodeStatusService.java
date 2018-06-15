@@ -7,20 +7,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static javax.management.timer.Timer.ONE_MINUTE;
 import static javax.management.timer.Timer.ONE_SECOND;
 
-/**
- *
- * It is useful to track node status to:
- *  - alert on node offline
- *
- */
 @Slf4j
 @Service
 public class NodeStatusService {
@@ -32,12 +23,10 @@ public class NodeStatusService {
     AkromaApiService akromaApiService;
 
     private ConcurrentHashMap<String, MasternodeStatus> nodeStatusMap = new ConcurrentHashMap<>();
-    List<Date> dates = new ArrayList<Date>();
 
     @Scheduled(fixedDelay = ONE_MINUTE, initialDelay=ONE_SECOND * 10)
     public void doStatusCheck() throws Exception {
         akromaApiService.getNodeStatus().forEach(status -> {
-            dates.add(status.getLastSeenAt());
             if (credentialsService.containsAddress(status.getAddress())) {
                 if (status.getSuccessiveConnectionCount() == 0) {
                     log.error("** NODE FAILING HEALTHCHECK **  account=" + status.getAddress());
